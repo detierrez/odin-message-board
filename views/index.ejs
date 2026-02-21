@@ -1,0 +1,13 @@
+<h1>HELLO WORLD</h1>
+
+<a href="/new">Add a message</a>
+
+<% if (locals.messages) { %>
+<% messages.forEach((message, idx) => { %>
+<li>
+  <a href="/<%= idx %>">Open</a> [<%= message.added %>]<%= message.user %>: <%= message.text %>
+</li>
+<% }) %>
+<% } else { %>
+<p>No messages yet</p>
+<% } %>
