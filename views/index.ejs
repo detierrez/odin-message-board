@@ -3,9 +3,9 @@
 <a href="/new">Add a message</a>
 
 <% if (locals.messages) { %>
-<% messages.forEach((message, idx) => { %>
+<% messages.forEach((message) => { %>
 <li>
-  <a href="/<%= idx %>">Open</a> [<%= message.added %>]<%= message.user %>: <%= message.text %>
+  <a href="/<%= message.id %>">Open</a> [<%= message.added %>]<%= message.username %>: <%= message.text %>
 </li>
 <% }) %>
 <% } else { %>
