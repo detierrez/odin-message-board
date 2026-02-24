@@ -1,5 +1,6 @@
 #! /usr/bin/env node
-const { argv } = require("node:process");
+require("../scripts/loadEnv");
+
 const { Client } = require("pg");
 
 const SQL = `
@@ -21,29 +22,10 @@ VALUES
 `;
 
 (async function main() {
-  const URI = getURI();
-
-  if (!URI) {
-    return console.log(`Usage:
-      populatedb dev
-      populatedb prod`);
-  }
-
   console.log("seeding db...");
-  const client = new Client({ connectionString: URI });
+  const client = new Client({ connectionString: process.env.DATABASE_URL });
   await client.connect();
   await client.query(SQL);
   await client.end();
   console.log("done");
 })();
-
-function getURI() {
-  switch (argv[2]) {
-    case "dev":
-      return "postgresql://dgutierrez:pentek@localhost:5432/top_messages";
-    case "prod":
-      return "";
-    default:
-      return null;
-  }
-}

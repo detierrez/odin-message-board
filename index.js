@@ -1,5 +1,7 @@
-const indexRouter = require("./routes/index");
+require("./scripts/loadEnv");
+
 const express = require("express");
+const indexRouter = require("./routes/index");
 const app = express();
 
 app.set("view engine", "ejs");
