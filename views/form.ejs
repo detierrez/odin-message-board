@@ -1,10 +1,18 @@
 <h1>Post a message</h1>
 <form method="POST" action="">
+  <% if (locals.errors) { %>
+  <p>Errors:</p>
+  <ul>
+    <% errors.forEach(error => { %>
+    <li><%= error.path %> <%= error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %>
   <label for="username">
-    Username: <input type="text" name="username" id="username">
+    Username: <input type="text" name="username" id="username" value="<%= locals.username || '' %>">
   </label>
   <label for="text">
-    Message: <textarea name="text" id="text"></textarea>
+    Message: <textarea name="text" id="text"><%= locals.text || '' %></textarea>
   </label>
   <button type="submit">Send</button>
 </form>
